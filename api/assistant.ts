@@ -1,17 +1,24 @@
-import { runAssistantChat, type AssistantChatMessage, type AssistantContext } from '../server/assistantHandler';
+import { runAssistantChat, type AssistantChatMessage, type AssistantContext } from '../lib/assistant/assistantHandler';
 
-type VercelRequest = {
+export const config = {
+  runtime: 'nodejs',
+  maxDuration: 30,
+};
+
+type Req = {
   method?: string;
   body?: unknown;
 };
 
-type VercelResponse = {
-  status: (code: number) => VercelResponse;
+type Res = {
+  status: (code: number) => Res;
   json: (body: unknown) => void;
   setHeader: (name: string, value: string) => void;
+  end?: (body?: string) => void;
 };
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: Req, res: Res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Cache-Control', 'no-store');
 
   if (req.method === 'OPTIONS') {
@@ -25,15 +32,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const body = (typeof req.body === 'string' ? JSON.parse(req.body) : req.body) as {
+    const raw = req.body;
+    const body = (typeof raw === 'string' ? JSON.parse(raw) : raw) as {
       messages?: AssistantChatMessage[];
       context?: AssistantContext;
     };
 
-    const result = await runAssistantChat(body.messages ?? [], body.context ?? {});
+    const result = await runAssistantChat(body?.messages ?? [], body?.context ?? {});
 
     if (result.error) {
-      return res.status(result.error.includes('not configured') ? 503 : 502).json({ error: result.error });
+      const code = result.error.includes('not configured') ? 503 : 502;
+      return res.status(code).json({ error: result.error });
     }
 
     return res.status(200).json({ reply: result.reply });

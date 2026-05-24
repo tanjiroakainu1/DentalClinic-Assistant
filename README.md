@@ -39,9 +39,15 @@ OPENROUTER_API_KEY=your_key_here
 OPENROUTER_MODEL=google/gemini-2.0-flash-001
 ```
 
-On **Vercel**, add the same variables in Project → Settings → Environment Variables.
+On **Vercel**, add the same variables in Project → Settings → Environment Variables, then **redeploy**.
 
 Clinic data still uses browser `localStorage`; only the AI assistant calls `/api/assistant`.
+
+**Galaxy AI troubleshooting**
+
+- Local: run `npm run dev` (the `/api/assistant` route is provided by Vite middleware; `npm run preview` alone does not include it unless you use preview after build with the plugin).
+- Production: ensure `OPENROUTER_API_KEY` is set on Vercel for Production, Preview, and Development environments.
+- If chat returns HTML errors, the API route is missing — check Vercel Functions logs for `api/assistant`.
 
 ## Quick portal access
 
