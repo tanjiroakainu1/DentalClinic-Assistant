@@ -1,4 +1,8 @@
-import { runAssistantChat, type AssistantChatMessage, type AssistantContext } from '../lib/assistant/assistantHandler';
+import {
+  runAssistantChat,
+  type AssistantChatMessage,
+  type AssistantContext,
+} from '../lib/assistant/assistantHandler.js';
 
 export const config = {
   runtime: 'nodejs',

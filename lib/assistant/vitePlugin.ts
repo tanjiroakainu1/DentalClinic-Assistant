@@ -1,6 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import type { Connect, Plugin } from 'vite';
-import { runAssistantChat } from './assistantHandler';
+import { runAssistantChat } from './assistantHandler.js';
 
 function createAssistantMiddleware(): Connect.NextHandleFunction {
   return (req: IncomingMessage, res: ServerResponse, next: Connect.NextFunction) => {

@@ -1,4 +1,4 @@
-import { buildGalaxySystemPrompt } from './galaxySystemPrompt';
+import { buildGalaxySystemPrompt } from './galaxySystemPrompt.js';
 
 export interface AssistantChatMessage {
   role: 'user' | 'assistant';
@@ -121,9 +121,13 @@ export async function runAssistantChat(
   for (const model of models) {
     try {
       const result = await callOpenRouter(apiKey, model, system, trimmed);
-      if (result.ok) return { reply: result.reply };
+      if (result.ok) {
+        return { reply: result.reply };
+      }
       lastHint = result.hint;
-      if (result.status === 401 || result.status === 403) break;
+      if (result.status === 401 || result.status === 403) {
+        break;
+      }
     } catch {
       lastHint = 'Galaxy AI could not reach the server. Check your internet connection.';
     }

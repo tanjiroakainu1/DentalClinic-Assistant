@@ -1,4 +1,4 @@
-import type { AssistantContext } from './assistantHandler';
+import type { AssistantContext } from './assistantHandler.js';
 
 export function buildGalaxySystemPrompt(context: AssistantContext): string {
   const role = context.userRole ?? 'guest';
