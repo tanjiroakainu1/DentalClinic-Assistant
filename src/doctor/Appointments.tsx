@@ -57,7 +57,8 @@ export function DoctorAppointments() {
         </div>
       </Card>
       <Card title="Appointments" className="mt-6">
-        <table className="w-full text-sm">
+        <div className="table-scroll -mx-1 px-1">
+        <table className="w-full min-w-[32rem] text-sm">
           <thead><tr className="border-b border-white/10"><th>Date</th><th>Patient</th><th>Reason</th><th>Status</th><th>Actions</th></tr></thead>
           <tbody>
             {appointments.map((a) => (
@@ -75,6 +76,7 @@ export function DoctorAppointments() {
             ))}
           </tbody>
         </table>
+        </div>
       </Card>
     </div>
   );

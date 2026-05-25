@@ -16,7 +16,7 @@ export function DoctorDashboard() {
   return (
     <div>
       <PageHeader title="Doctor Dashboard" subtitle={`Welcome, Dr. ${user?.name}!`} />
-      <div className="grid gap-4 sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         <StatCard label="Today's Appointments" value={todayAppts.length} variant="galaxy" />
         <StatCard label="Total Patients" value={patientIds.size} variant="candy" />
         <StatCard label="Total Appointments" value={all.filter((a) => a.status !== 'cancelled').length} variant="stardust" />
@@ -27,7 +27,8 @@ export function DoctorDashboard() {
           {todayAppts.length === 0 ? (
             <p className="text-violet-300/70">No appointments scheduled for today.</p>
           ) : (
-            <table className="w-full text-sm">
+            <div className="table-scroll -mx-1 px-1">
+            <table className="w-full min-w-[28rem] text-sm">
               <thead><tr className="border-b border-white/10"><th>Time</th><th>Patient</th><th>Reason</th><th>Status</th><th></th></tr></thead>
               <tbody>
                 {todayAppts.map((a) => (
@@ -45,6 +46,7 @@ export function DoctorDashboard() {
                 ))}
               </tbody>
             </table>
+            </div>
           )}
         </Card>
         <div className="space-y-4">

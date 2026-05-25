@@ -72,7 +72,8 @@ export function PatientAppointments() {
         </Link>
       )}
       <Card title="Your Appointments">
-        <table className="w-full text-sm">
+        <div className="table-scroll -mx-1 px-1">
+        <table className="w-full min-w-[28rem] text-sm">
           <thead><tr className="border-b border-white/10"><th>Date</th><th>Doctor</th><th>Reason</th><th>Status</th><th>Actions</th></tr></thead>
           <tbody>
             {appointments.map((a) => (
@@ -90,6 +91,7 @@ export function PatientAppointments() {
             ))}
           </tbody>
         </table>
+        </div>
       </Card>
     </div>
   );

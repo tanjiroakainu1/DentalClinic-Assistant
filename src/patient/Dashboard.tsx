@@ -19,7 +19,8 @@ export function PatientDashboard() {
           {appointments.length === 0 ? (
             <p className="text-violet-300/70">No upcoming appointments.</p>
           ) : (
-            <table className="w-full text-sm">
+            <div className="table-scroll -mx-1 px-1">
+            <table className="w-full min-w-[20rem] text-sm">
               <thead><tr className="border-b border-white/10"><th>Date</th><th>Doctor</th><th>Status</th></tr></thead>
               <tbody>
                 {appointments.map((a) => (
@@ -31,6 +32,7 @@ export function PatientDashboard() {
                 ))}
               </tbody>
             </table>
+            </div>
           )}
           <Link to="/patient/appointments" className="mt-4 block"><Button variant="cosmic" className="w-full">Manage Appointments</Button></Link>
         </Card>

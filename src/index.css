@@ -60,7 +60,7 @@
   }
 
   .glass-card-header {
-    @apply border-b border-white/10 px-5 py-4;
+    @apply border-b border-white/10 px-4 py-3 sm:px-5 sm:py-4;
   }
 
   .text-muted {
@@ -587,13 +587,78 @@
   }
 }
 
+/* —— Touch-friendly controls —— */
+.table-scroll {
+  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
 /* —— Public nav —— */
+.public-nav {
+  padding-top: env(safe-area-inset-top, 0);
+}
+
 .public-nav-brand {
-  @apply inline-flex items-center gap-2 text-lg;
+  @apply inline-flex min-h-11 min-w-0 max-w-full items-center gap-2 transition hover:opacity-90 active:opacity-80;
 }
 
 .public-nav-brand-icon {
-  @apply flex h-9 w-9 items-center justify-center rounded-xl border border-candy-400/35 bg-gradient-to-br from-candy-500/30 to-galaxy-800 text-sm text-candy-100 shadow-glow;
+  @apply flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-candy-400/35 bg-gradient-to-br from-candy-500/30 to-galaxy-800 text-sm text-candy-100 shadow-glow sm:h-9 sm:w-9;
+}
+
+.public-nav-brand-text {
+  @apply truncate text-base font-semibold sm:text-lg;
+}
+
+.public-nav-menu-btn {
+  @apply relative inline-flex h-11 w-11 shrink-0 touch-manipulation flex-col items-center justify-center gap-1.5 rounded-xl border border-white/15 bg-white/10 transition active:scale-95;
+}
+
+.public-nav-menu-line {
+  @apply block h-0.5 w-5 rounded-full bg-violet-100 transition-transform duration-200;
+}
+
+.public-nav-menu-line-open-a {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.public-nav-menu-line-open-b {
+  opacity: 0;
+}
+
+.public-nav-menu-line-open-c {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+.public-nav-drawer {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 0.35s ease,
+    opacity 0.25s ease;
+}
+
+.public-nav-drawer-open {
+  max-height: 16rem;
+  opacity: 1;
+}
+
+.public-nav-drawer-inner {
+  @apply flex flex-col gap-2 border-t border-white/10 px-3 pb-3 pt-2;
+}
+
+.public-nav-drawer-link {
+  @apply w-full justify-center;
+}
+
+.public-nav-mobile-cta {
+  @apply min-w-[5.5rem] px-3 text-xs sm:text-sm;
+}
+
+.public-nav-backdrop {
+  top: var(--public-nav-height, 3.5rem);
 }
 
 /* —— Auth (login / register) —— */
@@ -791,7 +856,7 @@
 @media (max-width: 640px) {
   .galaxy-assistant-root {
     right: 0.75rem;
-    bottom: 0.75rem;
+    bottom: max(0.75rem, env(safe-area-inset-bottom, 0.75rem));
   }
 
   .galaxy-assistant-panel {
@@ -799,7 +864,33 @@
     max-height: calc(100vh - 6rem);
   }
 
+  .galaxy-assistant-icon-btn {
+    height: 2.75rem;
+    width: 2.75rem;
+    font-size: 1rem;
+  }
+
+  .galaxy-assistant-send {
+    height: 2.75rem;
+    width: 2.75rem;
+  }
+
+  .galaxy-assistant-prompt-chip {
+    min-height: 2.25rem;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.75rem;
+  }
+
+  .galaxy-assistant-input {
+    min-height: 2.75rem;
+    font-size: 1rem;
+  }
+
   .auth-split {
     border-radius: 1.25rem;
+  }
+
+  .public-nav-bar {
+    --public-nav-height: 3.5rem;
   }
 }

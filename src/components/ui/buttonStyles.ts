@@ -14,13 +14,13 @@ export type ButtonVariant =
 export type ButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 
 const base =
-  'group relative inline-flex items-center justify-center gap-2 overflow-hidden font-semibold tracking-wide transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-candy-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f0a1e] disabled:pointer-events-none disabled:opacity-45 disabled:saturate-50 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]';
+  'group relative inline-flex touch-manipulation select-none items-center justify-center gap-2 overflow-hidden font-semibold tracking-wide transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-candy-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f0a1e] disabled:pointer-events-none disabled:opacity-45 disabled:saturate-50 active:translate-y-0 active:scale-[0.98] max-md:hover:translate-y-0 md:hover:-translate-y-0.5';
 
 const sizes: Record<ButtonSize, string> = {
-  xs: 'rounded-xl px-2.5 py-1 text-xs',
-  sm: 'rounded-xl px-3.5 py-1.5 text-xs',
-  md: 'rounded-2xl px-5 py-2.5 text-sm',
-  lg: 'rounded-2xl px-8 py-3.5 text-base',
+  xs: 'min-h-10 min-w-10 rounded-xl px-3 py-2 text-xs sm:min-h-9 sm:min-w-0 sm:px-2.5 sm:py-1',
+  sm: 'min-h-11 rounded-xl px-4 py-2.5 text-sm',
+  md: 'min-h-11 rounded-2xl px-5 py-3 text-sm',
+  lg: 'min-h-12 rounded-2xl px-8 py-3.5 text-base sm:min-h-[3.25rem]',
 };
 
 const variants: Record<ButtonVariant, string> = {

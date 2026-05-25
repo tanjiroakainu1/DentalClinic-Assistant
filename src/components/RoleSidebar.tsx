@@ -63,7 +63,7 @@ export function RoleSidebar({ mobileOpen, onClose }: { mobileOpen: boolean; onCl
                   <Link
                     to={l.to}
                     onClick={onClose}
-                    className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${
+                    className={`flex min-h-11 touch-manipulation items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition active:scale-[0.99] ${
                       active
                         ? 'bg-gradient-to-r from-candy-500/35 to-galaxy-600/35 text-candy-100 shadow-glow'
                         : 'text-violet-200/75 hover:bg-white/10 hover:text-violet-50'

@@ -109,7 +109,8 @@ export function PatientRecords() {
                 </form>
               </Card>
               <Card title="Treatment History" className="mt-4">
-                <table className="w-full text-sm">
+                <div className="table-scroll -mx-1 px-1">
+                <table className="w-full min-w-[24rem] text-sm">
                   <thead><tr className="border-b border-white/10"><th>Date</th><th>Diagnosis</th><th>Plan</th><th>Cost</th></tr></thead>
                   <tbody>
                     {treatments.map((t) => (
@@ -122,6 +123,7 @@ export function PatientRecords() {
                     ))}
                   </tbody>
                 </table>
+                </div>
               </Card>
             </>
           )}

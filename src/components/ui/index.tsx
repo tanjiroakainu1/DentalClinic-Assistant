@@ -1,7 +1,34 @@
 import type { ReactNode, ButtonHTMLAttributes, InputHTMLAttributes, SelectHTMLAttributes } from 'react';
+import { Link, type LinkProps } from 'react-router-dom';
 import type { StatVariant } from '../../lib/theme';
 import { STAT } from '../../lib/theme';
 import { buttonClassName, type ButtonSize, type ButtonVariant } from './buttonStyles';
+
+export function NavButtonLink({
+  to,
+  variant = 'outline',
+  active,
+  glow = false,
+  className = '',
+  children,
+  onNavigate,
+}: LinkProps & {
+  variant?: ButtonVariant;
+  active?: boolean;
+  glow?: boolean;
+  onNavigate?: () => void;
+}) {
+  return (
+    <Link
+      to={to}
+      className={`${buttonClassName(variant, 'sm', { active, className })} ${glow ? 'animate-pulse-glow' : ''}`}
+      onClick={onNavigate}
+      aria-current={active ? 'page' : undefined}
+    >
+      <span className="relative z-[1] inline-flex w-full items-center justify-center gap-2">{children}</span>
+    </Link>
+  );
+}
 
 export function Alert({ type, children, className = '' }: { type: 'success' | 'error' | 'info'; children: ReactNode; className?: string }) {
   const colors = {
@@ -23,7 +50,7 @@ export function Card({ title, children, className = '', headerRight }: { title?:
           {headerRight}
         </div>
       )}
-      <div className="p-5">{children}</div>
+      <div className="p-4 sm:p-5">{children}</div>
     </div>
   );
 }
@@ -80,7 +107,7 @@ export function TabGroup({
   className?: string;
 }) {
   return (
-    <div className={`inline-flex flex-wrap gap-2 rounded-2xl border border-white/10 bg-galaxy-950/50 p-1.5 backdrop-blur-md ${className}`}>
+    <div className={`inline-flex w-full max-w-full flex-wrap gap-2 rounded-2xl border border-white/10 bg-galaxy-950/50 p-2 backdrop-blur-md sm:w-auto sm:p-1.5 ${className}`}>
       {tabs.map((tab) => (
         <Button
           key={tab.id}
@@ -105,7 +132,7 @@ export function IconButton({
   return (
     <button
       type="button"
-      className={`inline-flex h-9 w-9 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-lg text-violet-200 transition-all hover:border-candy-400/50 hover:bg-candy-500/20 hover:text-candy-100 hover:shadow-glow active:scale-95 ${className}`}
+      className={`inline-flex h-11 w-11 min-h-11 min-w-11 touch-manipulation items-center justify-center rounded-xl border border-white/15 bg-white/10 text-lg text-violet-200 transition-all hover:border-candy-400/50 hover:bg-candy-500/20 hover:text-candy-100 hover:shadow-glow active:scale-95 sm:h-9 sm:w-9 sm:min-h-0 sm:min-w-0 ${className}`}
       {...props}
     >
       {children}
@@ -114,7 +141,7 @@ export function IconButton({
 }
 
 const inputClass =
-  'w-full rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-violet-300/60 focus:border-candy-400 focus:outline-none focus:ring-2 focus:ring-candy-500/30 backdrop-blur-sm';
+  'w-full min-h-11 rounded-xl border border-white/20 bg-white/10 px-3 py-2.5 text-base text-white placeholder:text-violet-300/60 focus:border-candy-400 focus:outline-none focus:ring-2 focus:ring-candy-500/30 backdrop-blur-sm sm:py-2 sm:text-sm';
 
 export function Input({ label, ...props }: InputHTMLAttributes<HTMLInputElement> & { label?: string }) {
   return (

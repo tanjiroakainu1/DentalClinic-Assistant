@@ -60,7 +60,7 @@ export function GuestLanding() {
   return (
     <div className="space-y-16 pb-8 md:space-y-24">
       {/* Hero */}
-      <section className="home-hero relative overflow-hidden rounded-[2rem] border border-candy-400/25 bg-hero-gradient p-8 shadow-glow-lg md:p-12 lg:p-14">
+      <section className="home-hero relative overflow-hidden rounded-2xl border border-candy-400/25 bg-hero-gradient p-6 shadow-glow-lg sm:rounded-[2rem] sm:p-8 md:p-12 lg:p-14">
         <div className="pointer-events-none absolute inset-0 bg-hero-glow opacity-80" aria-hidden />
         <div className="home-hero-scrim" aria-hidden />
         <div className="home-orb home-orb-a pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-candy-500/20 blur-3xl" />
@@ -72,7 +72,7 @@ export function GuestLanding() {
             <span className="hero-badge">₱ Philippine Peso · GCash</span>
           </div>
 
-          <h1 className="home-title hero-text-shadow text-4xl font-extrabold leading-[1.1] tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className="home-title hero-text-shadow text-3xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
             Dental Clinic
             <br />
             <span className="text-candy-200">Galaxy</span>
@@ -96,7 +96,7 @@ export function GuestLanding() {
             </Link>
           </div>
 
-          <div className="hero-stat-panel mt-10 grid w-full grid-cols-3 gap-4 sm:gap-6">
+          <div className="hero-stat-panel mt-8 grid w-full grid-cols-1 gap-3 sm:mt-10 sm:grid-cols-3 sm:gap-6">
             {[
               { v: '3', l: 'Portals' },
               { v: '₱', l: 'Peso billing' },

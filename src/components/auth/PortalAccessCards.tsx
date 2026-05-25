@@ -65,7 +65,7 @@ export function PortalAccessCards({ compact = false }: { compact?: boolean }) {
               type="button"
               disabled={!!loadingRole}
               onClick={() => handlePortal(account)}
-              className={`auth-portal-card group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br p-4 text-left transition-all duration-300 hover:-translate-y-1 ${theme.gradient} ${theme.ring} hover:border-white/25 ${loading ? 'opacity-70' : ''}`}
+              className={`auth-portal-card group relative min-h-[8.5rem] touch-manipulation overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br p-5 text-left transition-all duration-300 active:scale-[0.99] max-md:hover:translate-y-0 md:hover:-translate-y-1 ${theme.gradient} ${theme.ring} hover:border-white/25 ${loading ? 'opacity-70' : ''}`}
             >
               <span
                 className={`pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${theme.glow}`}
